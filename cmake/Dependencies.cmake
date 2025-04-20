@@ -487,14 +487,12 @@ if(USE_CUDA)
       caffe2_update_option(USE_CUDNN OFF)
     endif()
     # if(CAFFE2_STATIC_LINK_CUDA)
-    #   # When statically linking, this must be the order of the libraries
-    #   LIST(APPEND Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS
-    #       "${CUDA_TOOLKIT_ROOT_DIR}/lib64/libculibos.a" caffe2::cublas)
+    # When statically linking, this must be the order of the libraries
+    LIST(APPEND Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS
+        "${CUDA_TOOLKIT_ROOT_DIR}/lib64/libculibos.a" caffe2::cublas)
     # else()
     #   LIST(APPEND Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS caffe2::cublas)
     # endif()
-    LIST(APPEND Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS
-        caffe2::cublas "${CUDA_TOOLKIT_ROOT_DIR}/lib64/libculibos.a" "dl" caffe2::cudart)
     if(CAFFE2_USE_TENSORRT)
       list(APPEND Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS caffe2::tensorrt)
     else()
