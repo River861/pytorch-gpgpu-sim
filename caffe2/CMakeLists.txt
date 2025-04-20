@@ -226,7 +226,7 @@ if(USE_CUDA)
   set(CUDA_LIBRARIES PRIVATE ${CUDA_LIBRARIES})
   torch_cuda_based_add_library(caffe2_gpu ${Caffe2_GPU_SRCS})
   set(CUDA_LIBRARIES ${__tmp})
-  target_link_libraries(caffe2_gpu INTERFACE caffe2::cudart)
+  # target_link_libraries(caffe2_gpu INTERFACE caffe2::cudart)
 
   target_include_directories(
       caffe2_gpu INTERFACE $<INSTALL_INTERFACE:include>)
@@ -240,6 +240,8 @@ if(USE_CUDA)
   # linking; libculibos and cublas must be last.
   target_link_libraries(
       caffe2_gpu PUBLIC caffe2 ${Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS})
+
+  target_link_libraries(caffe2_gpu INTERFACE caffe2::cudart)
 
   # Set standard properties on the target
   aten_set_target_props(caffe2_gpu)

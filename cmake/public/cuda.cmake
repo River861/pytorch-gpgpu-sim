@@ -245,15 +245,15 @@ endif()
 # cublas. CUDA_CUBLAS_LIBRARIES is actually a list, so we will make an
 # interface library similar to cudart.
 add_library(caffe2::cublas INTERFACE IMPORTED)
-if(CAFFE2_STATIC_LINK_CUDA)
-    set_property(
-        TARGET caffe2::cublas PROPERTY INTERFACE_LINK_LIBRARIES
-        "${CUDA_TOOLKIT_ROOT_DIR}/lib64/libcublas_static.a")
-else()
-    set_property(
-        TARGET caffe2::cublas PROPERTY INTERFACE_LINK_LIBRARIES
-        ${CUDA_CUBLAS_LIBRARIES})
-endif()
+# if(CAFFE2_STATIC_LINK_CUDA)
+set_property(
+    TARGET caffe2::cublas PROPERTY INTERFACE_LINK_LIBRARIES
+    "${CUDA_TOOLKIT_ROOT_DIR}/lib64/libcublas_static.a")
+# else()
+#     set_property(
+#         TARGET caffe2::cublas PROPERTY INTERFACE_LINK_LIBRARIES
+#         ${CUDA_CUBLAS_LIBRARIES})
+# endif()
 set_property(
     TARGET caffe2::cublas PROPERTY INTERFACE_INCLUDE_DIRECTORIES
     ${CUDA_INCLUDE_DIRS})
